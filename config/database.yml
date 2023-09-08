@@ -1,0 +1,44 @@
+# default: &default
+#   adapter: postgresql
+#   host: db
+#   encoding: unicode
+#   username: postgres
+#   password: password
+#   pool: 5
+
+# development:
+#   <<: *default
+#   database: fill_home_app
+
+# test:
+#   <<: *default
+#   database: fill_home_app_test
+
+# production:
+#   <<: *default
+#   database: app_production
+#   encoding: unicode
+#   username: admin
+#   host: <%= ENV['APP_DATABASE_HOST'] %>
+#   password: <%= ENV['APP_DATABASE_PASSWORD'] %>
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  socket: /var/run/postgresql/.s.PGSQL.5432
+  host: db
+  username: postgres
+  password: password
+  pool: 5
+
+development:
+  <<: *default
+  database: fill_home_app
+
+test:
+  <<: *default
+  database: myapp_test
+
+production:
+  <<: *default
+  database: myapp_production
