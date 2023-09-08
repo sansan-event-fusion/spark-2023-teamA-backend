@@ -1,0 +1,518 @@
+openapi: 3.0.3
+info:
+  title: Swagger Petstore - OpenAPI 3.0
+  description: |-
+    This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about
+    Swagger at [https://swagger.io](https://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!
+    You can now help us improve the API whether it's by making changes to the definition itself or to the code.
+    That way, with time, we can improve the API in general, and expose some of the new features in OAS3.
+
+    Some useful links:
+    - [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)
+    - [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
+servers:
+  - url: 'http://localhost:3000/v1'
+paths:
+  /owner/rentalhouses:
+    get:
+      summary: Returns a list of rentalhouses.
+      tags:
+        - RentalHouses
+      description: Parameter description in CommonMark or HTML.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+            application/javascript:
+              schema:
+                $ref: '#/components/schemas/RentalHouse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 物件の登録に失敗しました
+      x-stoplight:
+        id: 0rdbi1ud5tan4
+        
+    post:
+      summary: Create a new rental house
+      tags:
+        - RentalHouses
+      requestBody:
+        description: Information about the rental house to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - address
+                - nearestStation
+                - maxFloorNumber
+                - buildingAge
+                - structureTypeId
+                - ownerId
+              properties:
+                name:
+                  type: string
+                  example: apartment1
+                address:
+                  type: string
+                  example: Osakacity
+                nearestStation:
+                  type: string
+                  example: UmedaStation
+                maxFloorNumber:
+                  type: integer
+                  format: int64
+                  example: 5
+                buildingAge:
+                  type: integer
+                  format: int64
+                  example: 45
+                structureTypeId:
+                  type: integer
+                  format: int64
+                  example: 2
+                ownerId:
+                  type: integer
+                  format: int64
+                  example: 2
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RentalHouse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 物件の登録に失敗しました
+      x-stoplight:
+        id: l4cy1yd02hs74
+  /roomStatuses/{id}:
+    get:
+      summary: Retrieve a specific RoomStatus by ID
+      tags:
+        - RoomStatuses
+      parameters:
+        - name: id
+          in: path
+          description: ID of the RoomStatus to retrieve
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomStatus'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "指定されたRoomStatusが見つかりませんでした"
+
+  '/rentalhouses/{rentalhouseId}/apartments/{apartmentId}/apartmentrooms/{apartmentroomsId}':
+    get:
+      summary: Returns a apartmentroom by ID.
+      parameters:
+        - name: rentalhouseId
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+        - name: apartmentId
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+        - name: apartmentroomsId
+          in: path
+          required: true
+          description: Parameter description in CommonMark or HTML.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    example: 4
+                  name:
+                    type: string
+                    example: Jessica Smith
+        '400':
+          description: The specified user ID is invalid (not a number).
+        '404':
+          description: A user with the specified ID was not found.
+        default:
+          description: Unexpected error
+components:
+  schemas:
+    Owner:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+          example: shota_mizusaki
+        email:
+          type: string
+          example: 123@gmail.com
+        password:
+          type: string
+          example: password
+        phone:
+          type: string
+          example: 000-0000-0000
+    RentalHouse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 100000
+        name:
+          type: string
+          example: apartment1
+        address:
+          type: string
+          example: Osakacity
+        nearestStation:
+          type: string
+          example: UmedaStation
+        maxFloorNumber:
+          type: integer
+          format: int64
+          example: 5
+        buildingAge:
+          type: integer
+          format: int64
+          example: 45
+        structureTypeId:
+          type: integer
+          format: int64
+          example: 2
+        ownerId:
+          type: integer
+          format: int64
+          example: 2
+    ReantalHousePhoto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        image:
+          type: string
+          example: 'https://'
+        rentalHouseId:
+          type: integer
+          format: int64
+          example: 1
+    StractureType:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: wooden_building
+    Apartment:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        rentalHouseId:
+          type: integer
+          format: int64
+          example: 1
+    Mansion:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        rentalHouseId:
+          type: integer
+          format: int64
+          example: 2
+    Other:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        rentalHouseId:
+          type: integer
+          format: int64
+          example: 3
+    AppartmentRoom:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: 701号室
+        layout:
+          type: string
+          example: 1LDK
+        thanksMoney:
+          type: integer
+          format: int64
+          example: 100000
+        securityDeposit:
+          type: integer
+          format: int64
+          example: 50000
+        floorNumber:
+          type: integer
+          format: int64
+          example: 7
+        availableDates:
+          type: array
+          example:
+            - YYYY-MM-DD
+            - YYYY-MM-DD
+        appartmentId:
+          type: integer
+          format: int64
+          example: 7
+        roomStatusId:
+          type: integer
+          format: int64
+          example: 7
+        stayFee:
+          type: integer
+          format: int64
+          example: 5000
+        rent:
+          type: integer
+          format: int64
+          example: 50000
+        maintenanceFee:
+          type: integer
+          format: int64
+          example: 5000
+        contractDuration:
+          type: string
+    MansionRoom:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: 701号室
+        layout:
+          type: string
+          example: 1LDK
+        thanksMoney:
+          type: integer
+          format: int64
+          example: 100000
+        securityDeposit:
+          type: integer
+          format: int64
+          example: 50000
+        floorNumber:
+          type: integer
+          format: int64
+          example: 7
+        availableDates:
+          type: array
+          example:
+            - YYYY-MM-DD
+            - YYYY-MM-DD
+        mansionId:
+          type: integer
+          format: int64
+          example: 7
+        roomStatusId:
+          type: integer
+          format: int64
+          example: 7
+        stayFee:
+          type: integer
+          format: int64
+          example: 5000
+        rent:
+          type: integer
+          format: int64
+          example: 50000
+        maintenanceFee:
+          type: integer
+          format: int64
+          example: 5000
+        contractDuration:
+          type: string
+    OtherRoom:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: 701号室
+        layout:
+          type: string
+          example: 1LDK
+        thanksMoney:
+          type: integer
+          format: int64
+          example: 100000
+        securityDeposit:
+          type: integer
+          format: int64
+          example: 50000
+        floorNumber:
+          type: integer
+          format: int64
+          example: 7
+        availableDates:
+          type: array
+          example:
+            - YYYY-MM-DD
+            - YYYY-MM-DD
+        otherId:
+          type: integer
+          format: int64
+          example: 7
+        roomStatusId:
+          type: integer
+          format: int64
+          example: 7
+        stayFee:
+          type: integer
+          format: int64
+          example: 5000
+        rent:
+          type: integer
+          format: int64
+          example: 50000
+        maintenanceFee:
+          type: integer
+          format: int64
+          example: 5000
+        contractDuration:
+          type: string
+    RoomStatus:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: 予約中
+    ApartmentRoomPhoto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        image:
+          type: string
+          example: 'https://'
+        apartmentId:
+          type: integer
+          format: int64
+          example: 1
+    MansionRoomPhoto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        image:
+          type: string
+          example: 'https://'
+        mansionId:
+          type: integer
+          format: int64
+          example: 1
+    OtherRoomPhoto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        image:
+          type: string
+          example: 'https://'
+        otherId:
+          type: integer
+          format: int64
+          example: 1
