@@ -25,8 +25,8 @@ make up
 docker-compose run --rm api rails db:create
 ```
 [+] Running 1/0
- ⠿ Container career-mine-app-backend-db-1  Running                                                   0.0s
-[ERROR] We could not find your database: career_mine_app. Which can be found in the database configuration file located at config/database.yml.
+ ⠿ Container fill-home-app-db-1  Running                                                   0.0s
+[ERROR] We could not find your database:  fill-home-app. Which can be found in the database configuration file located at config/database.yml.
 
 To resolve this issue:
 
