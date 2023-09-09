@@ -10,3 +10,5 @@ annotate:
 	docker-compose run api bundle exec annotate
 console:
 	docker-compose run api bundle exec rails c
+db create:
+	docker-compose run api bundle exec rails db:create

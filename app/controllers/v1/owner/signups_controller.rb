@@ -1,4 +1,5 @@
 class V1::Owner::SignupsController < ApplicationController
+  skip_before_action :verify_authenticity_token
     def create
       owner = Owner.new(signups_params)
       if owner.save
@@ -13,7 +14,7 @@ class V1::Owner::SignupsController < ApplicationController
     private
   
     def signups_params
-      params.permit(:email, :password, :last_name, :first_name. :phone_number)
+      params.permit(:email, :password, :last_name, :first_name, :phone_number)
     end
 end
   
