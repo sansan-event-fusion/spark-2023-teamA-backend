@@ -477,9 +477,12 @@ components:
           type: integer
           format: int64
           example: 10
-        name:
+        fist_name:
           type: string
-          example: shota_mizusaki
+          example: mizusaki
+        last_name:
+          type: string
+          example: shota
         email:
           type: string
           example: 123@gmail.com
