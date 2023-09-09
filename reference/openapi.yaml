@@ -49,7 +49,7 @@ paths:
                   error:
                     type: string
                     example: Owner creation failed
-  /rentalhouses:
+  /rental_houses:
     get:
       summary: Returns a list of rentalhouses.
       tags:
@@ -79,7 +79,7 @@ paths:
                     example: 物件の取得に失敗しました
       x-stoplight:
         id: 774xka4znm0ds
-  /owner/rentalhouses:
+  /owner/rental_houses:
     post:
       summary: Create a new rental house
       tags:
@@ -139,7 +139,7 @@ paths:
                     example: 物件の登録に失敗しました
       x-stoplight:
         id: l4cy1yd02hs74
-  '/structureTypes/{id}':
+  '/structure_types/{id}':
     get:
       summary: Retrieve a specific StractureType by ID
       tags:
@@ -169,7 +169,7 @@ paths:
                   error:
                     type: string
                     example: 指定されたStractureTypeが見つかりませんでした
-  '/roomStatuses/{id}':
+  '/room_statuses/{id}':
     get:
       summary: Retrieve a specific RoomStatus by ID
       tags:
@@ -199,34 +199,9 @@ paths:
                   error:
                     type: string
                     example: 指定されたRoomStatusが見つかりませんでした
-  '/rentalhouses/{rentalhouseId}/Mansion/{mansionId}/mansionRooms/{mansionRoomsId}':
+  '/rental_houses/Mansion//mansion_rooms/{Id}':
     get:
-      summary: Returns a mansitontRoom by ID.
-      parameters:
-        - name: rentalHouseId
-          in: path
-          required: true
-          description: Parameter description in CommonMark or HTML.
-          schema:
-            type: integer
-            format: int64
-            minimum: 1
-        - name: mansionId
-          in: path
-          required: true
-          description: Parameter description in CommonMark or HTML.
-          schema:
-            type: string
-            format: int64
-            minimum: 1
-        - name: mansionRoomsId
-          in: path
-          required: true
-          description: Parameter description in CommonMark or HTML.
-          schema:
-            type: integer
-            format: int64
-            minimum: 1
+      summary: Returns a mansionRoom by ID.
       responses:
         '200':
           description: 'RentalHouse,Mansion, MansionRoomを取得'
@@ -250,19 +225,12 @@ paths:
           description: Unexpected error
       x-stoplight:
         id: 72345bjp4mybh
-  '/rental_houses/{rentalHouseId}/mansions':
+  '/rental_houses/mansions':
     post:
       summary: Create a new mansion
       tags:
         - Mansions
-      parameters:
-        - name: rentalHouseId
-          in: path
-          required: true
-          description: ID of the RentalHouse to which this Mansion will belong
-          schema:
-            type: integer
-            format: int64
+      parameters: []
       requestBody:
         description: Information about the mansion to be created
         required: true
@@ -297,19 +265,12 @@ paths:
                     example: マンションの登録に失敗しました
       x-stoplight:
         id: zxuc5ow82bwhh
-  /mansion/{mansionId}/rooms:
+  /mansion/rooms:
     post:
       summary: Create a new mansion room
       tags:
         - MansionRooms
-      parameters:
-        - name: mansionId
-          in: path
-          required: true
-          description: ID of the Mansion to which the room will belong
-          schema:
-            type: integer
-            format: int64
+      parameters: []
       requestBody:
         description: Information about the mansion room to be created
         required: true
@@ -387,6 +348,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MansionRoom'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: マンションの部屋の登録に失敗しました
+  /mansion/mansion_room/mansion_room_photo:
+   post:
+      summary: Create a new MansionRoomPhoto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MansionRoomPhoto'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MansionRoomPhoto'
         '400':
           description: Bad Request
           content:
