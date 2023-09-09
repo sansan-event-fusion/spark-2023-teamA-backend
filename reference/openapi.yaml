@@ -23,7 +23,7 @@ externalDocs:
 servers:
   - url: 'http://localhost:3000/v1'
 paths:
-  /owner/sign_up:
+  /owners/sign_up:
     post:
       summary: Create a new Owner
       requestBody:
