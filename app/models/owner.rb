@@ -1,5 +1,6 @@
 class Owner < ApplicationRecord
     has_secure_password
+    has_many :rental_houses
 
     validates :email, presence: true
     validates :last_name, presence: true
