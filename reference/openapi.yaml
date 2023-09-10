@@ -23,7 +23,7 @@ externalDocs:
 servers:
   - url: 'http://localhost:3000/v1'
 paths:
-  /owners:
+  /owners/sign_up:
     post:
       summary: Create a new Owner
       requestBody:
@@ -49,7 +49,46 @@ paths:
                   error:
                     type: string
                     example: Owner creation failed
-  /rental_houses:
+  /owners/login:
+    post:
+      summary: Login as an Owner
+      tags:
+        - Owners
+      requestBody:
+        description: Owner login credentials
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: 123@gmail.com
+                password:
+                  type: string
+                  example: password
+              required:
+                - email
+                - password
+      responses:
+        '200':
+          description: Login Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Owner'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Login failed
+  /rentalHouses:
     get:
       summary: Returns a list of rentalhouses.
       tags:
@@ -79,7 +118,7 @@ paths:
                     example: 物件の取得に失敗しました
       x-stoplight:
         id: 774xka4znm0ds
-  /owner/rental_houses:
+  /owner/rentalHouses:
     post:
       summary: Create a new rental house
       tags:
@@ -139,7 +178,52 @@ paths:
                     example: 物件の登録に失敗しました
       x-stoplight:
         id: l4cy1yd02hs74
-  '/structure_types/{id}':
+  /owner/rentalHouses/photos:
+    post:
+      summary: Create a new RentalHousePhoto
+      tags:
+        - RentalHousePhotos
+      parameters: []
+      requestBody:
+        description: Information about the RentalHousePhoto to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - rentalHouseId
+                - photoUrl
+              properties:
+                rentalHouseId:
+                  type: integer
+                  format: int64
+                  description: Foreign key for RentalHouse
+                  example: 100000
+                photoUrl:
+                  type: string
+                  example: 'https://example.com/path/to/photo.jpg'
+                caption:
+                  type: string
+                  example: Living room view
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RentalHousePhoto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: RentalHousePhotoを作成できませんでした
+  '/structureTypes/{id}':
     get:
       summary: Retrieve a specific StractureType by ID
       tags:
@@ -169,7 +253,7 @@ paths:
                   error:
                     type: string
                     example: 指定されたStractureTypeが見つかりませんでした
-  '/room_statuses/{id}':
+  '/roomStatuses/{id}':
     get:
       summary: Retrieve a specific RoomStatus by ID
       tags:
@@ -199,7 +283,7 @@ paths:
                   error:
                     type: string
                     example: 指定されたRoomStatusが見つかりませんでした
-  '/rental_houses/Mansion//mansion_rooms/{Id}':
+  '/rentalHouses/mansion//mansionRooms/{Id}':
     get:
       summary: Returns a mansionRoom by ID.
       responses:
@@ -225,7 +309,7 @@ paths:
           description: Unexpected error
       x-stoplight:
         id: 72345bjp4mybh
-  '/rental_houses/mansions':
+  '/rentalHouses/mansions':
     post:
       summary: Create a new mansion
       tags:
@@ -358,7 +442,7 @@ paths:
                   error:
                     type: string
                     example: マンションの部屋の登録に失敗しました
-  /mansion/mansion_room/mansion_room_photo:
+  /mansion/mansionRoom/mansionRoomPhoto:
    post:
       summary: Create a new MansionRoomPhoto
       requestBody:
@@ -393,9 +477,12 @@ components:
           type: integer
           format: int64
           example: 10
-        name:
+        fist_name:
           type: string
-          example: shota_mizusaki
+          example: mizusaki
+        last_name:
+          type: string
+          example: shota
         email:
           type: string
           example: 123@gmail.com
