@@ -12,3 +12,5 @@ console:
 	docker-compose run api bundle exec rails c
 db create:
 	docker-compose run api bundle exec rails db:create
+seed:
+	docker-compose run --rm api rails db:seed
