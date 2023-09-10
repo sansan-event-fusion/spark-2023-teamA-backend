@@ -1,2 +1,5 @@
 require 'owners.schema'
 require 'structure_types.schema'
+require 'rental_houses.schema'
+require 'mansions.schema'
+require 'rental_house_photos.schema'
