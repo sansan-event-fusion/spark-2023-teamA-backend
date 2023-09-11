@@ -1,5 +1,5 @@
 class V1::Owner::SignupsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  # skip_before_action :verify_authenticity_token
     def create
       owner = Owner.new(signups_params)
       if owner.save
@@ -7,7 +7,7 @@ class V1::Owner::SignupsController < ApplicationController
   
         render json: owner, serializer: OwnerSerializer, status: :created
       else
-        render_error errors: owner.errors, message: '失敗しました', status: :unprocessable_entity
+        render_error errors: owner.errors.full_messages, message: '失敗しました', status: :unprocessable_entity
       end
     end
   

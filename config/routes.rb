@@ -6,4 +6,8 @@ Rails.application.routes.draw do
       resource :mansion, only: :create
     end
   end
+
+  # routes.rb
+get 'test_session', to: 'application#test_session'
+
 end

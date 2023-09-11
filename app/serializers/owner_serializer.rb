@@ -4,6 +4,4 @@ class OwnerSerializer < ActiveModel::Serializer
     attributes :email
     attributes :first_name
     attributes :last_name
-  #以下はテスト用, 本番になったらコメントアウト
-    # attributes :id
 end
