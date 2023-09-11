@@ -7,9 +7,7 @@ class MansionRoomRegistrationForm
   attribute :thanksMoney, :integer
   attribute :securityDeposit, :integer
   attribute :floorNumber, :integer
-  #attribute :availableDates, :array
   attribute :mansion_id, :integer
-  #attribute :room_status_id, :integer
   attribute :stayFee, :integer
   attribute :rent, :integer
   attribute :maintenanceFee, :integer
@@ -27,16 +25,12 @@ class MansionRoomRegistrationForm
         thanksMoney: thanksMoney,
         securityDeposit: securityDeposit,
         floorNumber: floorNumber,
-        #availableDates: availableDates,
         mansion_id: mansion_id,
-        #room_status_id: room_status_id,
         stayFee: stayFee,
         rent: rent,
         maintenanceFee: maintenanceFee,
         contractDuration: contractDuration
       )
-
-      # ここで追加の処理を追加できます
 
       @saved_mansion_room = mansion_room
     end
