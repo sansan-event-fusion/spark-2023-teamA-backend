@@ -5,7 +5,12 @@ Rails.application.routes.draw do
     namespace :owner do
       resource :signup, only: :create
       resource :login, only: :create
-      resource :mansion, only: :create
+
+      namespace :mansion do
+        resources :mansion, only: :create do
+          resource :mansion_room, only: :create
+        end
+      end
     end
 
   end
