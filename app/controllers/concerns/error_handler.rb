@@ -6,6 +6,10 @@ module ErrorHandler
           end
     end
 
+    ERROR_CODE = {
+        internal_server_error: 500,
+    }.freeze
+
     protected
 
     def render_error(status:, errors: [], message: nil, code: nil)
@@ -16,5 +20,5 @@ module ErrorHandler
         Rails.logger.error error
         render_error(errors: [error], code: ERROR_CODE[:internal_server_error],
                      status: error.try('status').present? ? error.status : :internal_server_error)
-      end
+    end
 end

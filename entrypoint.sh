@@ -10,6 +10,6 @@ case "$RAILS_ENV" in
     "test" ) db_env="test" ;;
 esac
 
-# bundle exec ridgepole -c config/database.yml -E $db_env -f db/Schemafile --apply
+bundle exec ridgepole -c config/database.yml -E $db_env -f db/Schemafile --apply
 
 exec "$@"
