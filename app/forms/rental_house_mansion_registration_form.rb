@@ -9,7 +9,6 @@ class RentalHouseMansionRegistrationForm
     attribute :buildingAge, :integer
     attribute :owner_id, :integer
     attribute :rental_house_photos, array: true
-    # attribute :mansion_attributes, :hash, default: {}
   
     #Todo : Validateを記述する
     validates :name, presence: true
