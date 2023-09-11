@@ -24,7 +24,6 @@ class V1::Owner::MansionRoomsController < V1::Owner::BasesController
       :thanksMoney,
       :securityDeposit,
       :floorNumber,
-      #:availableDates => [],
       :room_status_id,
       :stayFee,
       :rent,
