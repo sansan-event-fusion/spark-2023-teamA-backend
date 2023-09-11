@@ -1,11 +1,11 @@
-class V1::Owner::MansionsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+class V1::Owner::MansionsController < V1::Owner::BasesController
+  before_action :authenticate_owner, only: [:create] 
       def new
         @form = RentalHouseMansionRegistrationForm.new
       end
     
       def create
-        form = RentalHouseMansionRegistrationForm.new(rental_house_params)
+        form = RentalHouseMansionRegistrationForm.new(rental_house_params.merge(owner_id: @current_owner.id))
         if form.save
           render json: form.saved_mansion, serializer: MansionSerializer, status: :created
         else
@@ -22,7 +22,6 @@ class V1::Owner::MansionsController < ApplicationController
           :structure_type_id, 
           :maxFloorNumber, 
           :buildingAge, 
-          :owner_id,
           rental_house_photos: [:image],
         )
       end
