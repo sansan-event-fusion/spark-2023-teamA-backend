@@ -10,5 +10,5 @@ class RentalHouseSerializer < ActiveModel::Serializer
   attributes :maxFloorNumber
   attributes :buildingAge
   attributes :owner
-  attributes :structure_type
+  attributes :structure_type_id
 end
