@@ -5,12 +5,9 @@ Rails.application.routes.draw do
     namespace :owner do
       resource :signup, only: :create
       resource :login, only: :create
-      resource :mansion, only: :create
+      resources :mansions, only: :create do
+        resource :mansion_room, only: :create
+      end
     end
-
   end
-
-  # routes.rb
-get 'test_session', to: 'application#test_session'
-
 end
