@@ -1,4 +1,4 @@
-class V1::Owner::Mansion::MansionsController < V1::Owner::BasesController
+class V1::Owner::MansionsController < V1::Owner::BasesController
   before_action :authenticate_owner, only: [:create] 
       def new
         @form = RentalHouseMansionRegistrationForm.new

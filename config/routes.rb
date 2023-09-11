@@ -5,11 +5,8 @@ Rails.application.routes.draw do
     namespace :owner do
       resource :signup, only: :create
       resource :login, only: :create
-
-      namespace :mansion do
-        resources :mansion, only: :create do
-          resource :mansion_room, only: :create
-        end
+      resources :mansions, only: :create do
+        resource :mansion_room, only: :create
       end
     end
 

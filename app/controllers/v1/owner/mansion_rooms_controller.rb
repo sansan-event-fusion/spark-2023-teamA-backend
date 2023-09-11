@@ -1,4 +1,4 @@
-class V1::Owner::Mansion::MansionRoomsController < V1::Owner::BasesController
+class V1::Owner::MansionRoomsController < V1::Owner::BasesController
   before_action :authenticate_owner, only: [:create]
 
   def create
@@ -24,7 +24,7 @@ class V1::Owner::Mansion::MansionRoomsController < V1::Owner::BasesController
       :thanksMoney,
       :securityDeposit,
       :floorNumber,
-      :availableDates => [],
+      #:availableDates => [],
       :room_status_id,
       :stayFee,
       :rent,

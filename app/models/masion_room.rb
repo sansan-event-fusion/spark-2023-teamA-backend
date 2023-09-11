@@ -8,7 +8,7 @@ class MansionRoom < ApplicationRecord
   validates :thanksMoney, presence: true
   validates :securityDeposit, presence: true
   validates :floorNumber, presence: true
-  validates :availableDates, presence: true
+  #validates :availableDates, presence: true
   validates :mansion_id, presence: true
   validates :room_status_id, presence: true
   validates :stayFee, presence: true
