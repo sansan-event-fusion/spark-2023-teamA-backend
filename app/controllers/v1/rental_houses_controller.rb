@@ -5,7 +5,7 @@ class V1::RentalHousesController < ApplicationController
     if @rental_houses.blank?
       render_error errors: @rental_houses.errors, message: "登録はありません", status: :not_found
     else
-      render json: @rental_houses, serializer: RentalHouseSerializer, status: :ok
+      render json: @rental_houses, each_serializer: RentalHouseSerializer, status: :ok
     end
 
   end
