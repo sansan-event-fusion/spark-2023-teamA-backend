@@ -1,6 +1,4 @@
 class V1::Owner::MansionRoomsController < V1::Owner::BasesController
-  before_action :authenticate_owner, only: [:create, :show]
-
   def show
     # マンションルームIDをparamsから取得
     mansion_room_id = params[:id]
