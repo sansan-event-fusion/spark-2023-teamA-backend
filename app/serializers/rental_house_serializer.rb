@@ -7,7 +7,8 @@ class RentalHouseSerializer < ActiveModel::Serializer
   attributes :id
   attributes :name
   attributes :address
-  attributes :maxFloorNumber
-  attributes :buildingAge
+  attributes :nearest_station
+  attributes :max_floor_fumber
+  attributes :building_age
   attributes :structure_type_id
 end
