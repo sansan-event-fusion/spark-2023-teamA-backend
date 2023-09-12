@@ -4,14 +4,14 @@ class MansionRoomRegistrationForm
 
   attribute :name, :string
   attribute :layout, :string
-  attribute :thanksMoney, :integer
-  attribute :securityDeposit, :integer
-  attribute :floorNumber, :integer
+  attribute :thanks_money, :integer
+  attribute :security_deposit, :integer
+  attribute :floor_number, :integer
   attribute :mansion_id, :integer
-  attribute :stayFee, :integer
+  attribute :stay_fee, :integer
   attribute :rent, :integer
-  attribute :maintenanceFee, :integer
-  attribute :contractDuration, :string
+  attribute :maintenance_fee, :integer
+  attribute :contract_duration, :string
 
   attr_reader :saved_mansion_room
 
@@ -22,14 +22,14 @@ class MansionRoomRegistrationForm
       mansion_room = MansionRoom.create!(
         name: name,
         layout: layout,
-        thanksMoney: thanksMoney,
-        securityDeposit: securityDeposit,
-        floorNumber: floorNumber,
+        thanks_money: thanks_money,
+        security_deposit: security_deposit,
+        floor_number: floor_number,
         mansion_id: mansion_id,
-        stayFee: stayFee,
+        stay_fee: stay_fee,
         rent: rent,
-        maintenanceFee: maintenanceFee,
-        contractDuration: contractDuration
+        maintenance_fee: maintenance_fee,
+        contract_duration: contract_duration
       )
 
       @saved_mansion_room = mansion_room

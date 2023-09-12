@@ -4,12 +4,12 @@ class MansionRoomSerializer < ActiveModel::Serializer
   attributes :id
   attributes :name
   attributes :layout
-  attributes :thanksMoney
-  attributes :securityDeposit
-  attributes :floorNumber
+  attributes :thanks_money
+  attributes :security_deposit
+  attributes :floor_number
   attributes :mansion_id
-  attributes :stayFee
+  attributes :stay_fee
   attributes :rent
-  attributes :maintenanceFee
-  attributes :contractDuration
+  attributes :maintenance_fee
+  attributes :contract_duration
 end

@@ -35,14 +35,14 @@ class V1::Owner::MansionRoomsController < V1::Owner::BasesController
     params.require(:mansion_room).permit(
       :name,
       :layout,
-      :thanksMoney,
-      :securityDeposit,
-      :floorNumber,
+      :thanks_money,
+      :security_deposit,
+      :floor_number,
       :room_status_id,
-      :stayFee,
+      :stay_fee,
       :rent,
-      :maintenanceFee,
-      :contractDuration
+      :maintenance_fee,
+      :contract_duration
     )
   end
 end

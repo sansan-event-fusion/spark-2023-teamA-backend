@@ -19,9 +19,10 @@ class V1::Owner::MansionsController < V1::Owner::BasesController
         params.require(:rental_house).permit(
           :name, 
           :address, 
+          :nearest_station,
           :structure_type_id, 
-          :maxFloorNumber, 
-          :buildingAge, 
+          :max_floor_number, 
+          :building_age, 
           rental_house_photos: [:image],
         )
       end

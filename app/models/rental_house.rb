@@ -6,8 +6,9 @@ class RentalHouse < ApplicationRecord
 
     validates :name, presence: true
     validates :address, presence: true
+    validates :nearest_station, presence: true
     validates :structure_type_id, presence: true
-    validates :maxFloorNumber, presence: true
-    validates :buildingAge, presence: true
+    validates :max_floor_number, presence: true
+    validates :building_age, presence: true
     validates :owner_id, presence: true
 end
