@@ -11,7 +11,6 @@ class RentalHouseMansionRegistrationForm
     attribute :owner_id, :integer
     attribute :rental_house_photos, array: true
   
-    #Todo : Validateを記述する
     validates :name, presence: true
     validates :address, presence: true
     validates :nearest_station, presence: true

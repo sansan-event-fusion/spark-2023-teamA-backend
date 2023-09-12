@@ -1,5 +1,7 @@
 class MansionRoomSerializer < ActiveModel::Serializer
   belongs_to :mansion
+  has_many :mansion_room_photos
+  
 
   attributes :id
   attributes :name
