@@ -1,8 +1,7 @@
 class V1::Owner::MansionRoomsController < V1::Owner::BasesController
   def index
     # レンタルハウスIDをparamsから取得
-    rental_house_id = params[:rental_house_id]
-    rental_house = RentalHouse.find_by(id: rental_house_id)
+    rental_house = RentalHouse.find_by(owner_id: @current_owner.id, id: params[:rental_house_id])
 
     if rental_house
       render json: rental_house, include: ['rental_house_photos','mansion','mansion.mansion_rooms','mansion.mansion_rooms.mansion_room_photos'], serializer: RentalHouseSerializer, status: :ok
