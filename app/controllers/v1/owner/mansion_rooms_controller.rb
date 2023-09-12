@@ -1,15 +1,13 @@
 class V1::Owner::MansionRoomsController < V1::Owner::BasesController
-  def show
-    # マンションルームIDをparamsから取得
-    mansion_room_id = params[:id]
+  def index
+    # レンタルハウスIDをparamsから取得
+    rental_house_id = params[:rental_house_id]
+    rental_house = RentalHouse.find_by(id: rental_house_id)
 
-    # マンションルームを取得
-    mansion_room = MansionRoom.find_by(id: mansion_room_id)
-
-    if mansion_room
-      render json: mansion_room, serializer: MansionRoomSerializer, status: :ok
+    if rental_house
+      render json: rental_house, include: ['rental_house_photos','mansion','mansion.mansion_rooms','mansion.mansion_rooms.mansion_room_photos'], serializer: RentalHouseSerializer, status: :ok
     else
-      render_error(message: 'マンションルームが見つかりません', status: :not_found)
+      render_error(message: 'レンタルハウスが見つかりません', status: :not_found)
     end
   end
 
@@ -18,7 +16,7 @@ class V1::Owner::MansionRoomsController < V1::Owner::BasesController
     mansion_id = params[:mansion_id]
 
     # マンションルームを作成
-    form = MansionRoomRegistrationForm.new(mansion_room_params.merge(mansion_id:))
+    form = MansionRoomRegistrationForm.new(mansion_room_params.merge(mansion_id: mansion_id))
 
     if form.save
       render json: form.saved_mansion_room, serializer: MansionRoomSerializer, status: :created
