@@ -3,7 +3,7 @@
 require 'yaml'
 
 ActiveRecord::Base.connection.tables.each do |t|
-    ActiveRecord::Base.connection.reset_pk_sequence!(t)
+  ActiveRecord::Base.connection.reset_pk_sequence!(t)
 end
 
 file_path = Rails.root.join('db', 'masters', 'structure_types.yml')

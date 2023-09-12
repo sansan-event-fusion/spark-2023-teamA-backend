@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resource :signup, only: :create
       resource :login, only: :create
       resources :mansions, only: :create do
-        resources :mansion_rooms, only: [ :create, :show ]
+        resources :mansion_rooms, only: %i[create show]
       end
     end
   end

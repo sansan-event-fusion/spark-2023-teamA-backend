@@ -15,7 +15,6 @@ class MansionRoomRegistrationForm
   attribute :contract_duration, :string
   attribute :mansion_room_photos, array: true
 
-
   validates :name, presence: true
   validates :layout, presence: true
   validates :thanks_money, presence: true
@@ -34,23 +33,23 @@ class MansionRoomRegistrationForm
 
     ActiveRecord::Base.transaction do
       mansion_room = MansionRoom.create!(
-        name: name,
-        layout: layout,
-        thanks_money: thanks_money,
-        security_deposit: security_deposit,
-        floor_number: floor_number,
-        mansion_id: mansion_id,
-        stay_fee: stay_fee,
-        rent: rent,
-        maintenance_fee: maintenance_fee,
-        contract_duration: contract_duration
+        name:,
+        layout:,
+        thanks_money:,
+        security_deposit:,
+        floor_number:,
+        mansion_id:,
+        stay_fee:,
+        rent:,
+        maintenance_fee:,
+        contract_duration:
       )
 
       @saved_mansion_room = mansion_room
 
       mansion_room_photos.each do |photo|
         MansionRoomPhoto.create!(image: photo, mansion_room_id: mansion_room.id)
-     end
+      end
     end
   end
 end
