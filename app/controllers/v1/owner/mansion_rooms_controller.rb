@@ -18,7 +18,7 @@ class V1::Owner::MansionRoomsController < V1::Owner::BasesController
     mansion_id = params[:mansion_id]
 
     # マンションルームを作成
-    form = MansionRoomRegistrationForm.new(mansion_room_params.merge(mansion_id: mansion_id))
+    form = MansionRoomRegistrationForm.new(mansion_room_params.merge(mansion_id:))
 
     if form.save
       render json: form.saved_mansion_room, serializer: MansionRoomSerializer, status: :created
@@ -33,14 +33,14 @@ class V1::Owner::MansionRoomsController < V1::Owner::BasesController
     params.require(:mansion_room).permit(
       :name,
       :layout,
-      :thanksMoney,
-      :securityDeposit,
-      :floorNumber,
+      :thanks_money,
+      :security_deposit,
+      :floor_number,
       :room_status_id,
-      :stayFee,
+      :stay_fee,
       :rent,
-      :maintenanceFee,
-      :contractDuration,
+      :maintenance_fee,
+      :contract_duration,
       mansion_room_photos: [:image]
     )
   end

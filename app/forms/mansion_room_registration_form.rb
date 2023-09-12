@@ -4,28 +4,27 @@ class MansionRoomRegistrationForm
 
   attribute :name, :string
   attribute :layout, :string
-  attribute :thanksMoney, :integer
-  attribute :securityDeposit, :integer
-  attribute :floorNumber, :integer
+  attribute :thanks_money, :integer
+  attribute :security_deposit, :integer
+  attribute :floor_number, :integer
   attribute :mansion_id, :integer
-  attribute :stayFee, :integer
+  attribute :stay_fee, :integer
   attribute :rent, :integer
-  attribute :maintenanceFee, :integer
-  attribute :contractDuration, :string
-  attribute :mansion_room_photos, array: true
 
+  attribute :maintenance_fee, :integer
+  attribute :contract_duration, :string
+  attribute :mansion_room_photos, array: true
 
   validates :name, presence: true
   validates :layout, presence: true
-  validates :thanksMoney, presence: true
-  validates :securityDeposit, presence: true
-  validates :floorNumber, presence: true
-  validates :stayFee, presence: true
-  validates :rent, presence: true
-  validates :maintenanceFee, presence: true
-  validates :contractDuration, presence: true
+  validates :thanks_money, presence: true
+  validates :security_deposit, presence: true
+  validates :floor_number, presence: true
   validates :mansion_id, presence: true
-  validates :mansion_room_photos, presence: true
+  validates :stay_fee, presence: true
+  validates :rent, presence: true
+  validates :maintenance_fee, presence: true
+  validates :contract_duration, presence: true
 
   attr_reader :saved_mansion_room
 
@@ -34,23 +33,23 @@ class MansionRoomRegistrationForm
 
     ActiveRecord::Base.transaction do
       mansion_room = MansionRoom.create!(
-        name: name,
-        layout: layout,
-        thanksMoney: thanksMoney,
-        securityDeposit: securityDeposit,
-        floorNumber: floorNumber,
-        mansion_id: mansion_id,
-        stayFee: stayFee,
-        rent: rent,
-        maintenanceFee: maintenanceFee,
-        contractDuration: contractDuration
+        name:,
+        layout:,
+        thanks_money:,
+        security_deposit:,
+        floor_number:,
+        mansion_id:,
+        stay_fee:,
+        rent:,
+        maintenance_fee:,
+        contract_duration:
       )
 
       @saved_mansion_room = mansion_room
 
       mansion_room_photos.each do |photo|
         MansionRoomPhoto.create!(image: photo, mansion_room_id: mansion_room.id)
-     end
+      end
     end
   end
 end

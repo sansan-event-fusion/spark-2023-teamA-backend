@@ -1,0 +1,14 @@
+AllCops:
+  NewCops: enable
+
+Naming/MethodName:
+  EnforcedStyle: snake_case
+  SupportedStyles:
+    - snake_case
+    - camelCase
+
+Naming/VariableName:
+  EnforcedStyle: snake_case
+  SupportedStyles:
+    - snake_case
+    - camelCase
