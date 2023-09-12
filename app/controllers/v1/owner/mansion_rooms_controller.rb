@@ -1,5 +1,19 @@
 class V1::Owner::MansionRoomsController < V1::Owner::BasesController
-  before_action :authenticate_owner, only: [:create]
+  before_action :authenticate_owner, only: [:create, :show]
+
+  def show
+    # マンションルームIDをparamsから取得
+    mansion_room_id = params[:id]
+
+    # マンションルームを取得
+    mansion_room = MansionRoom.find_by(id: mansion_room_id)
+
+    if mansion_room
+      render json: mansion_room, serializer: MansionRoomSerializer, status: :ok
+    else
+      render_error(message: 'マンションルームが見つかりません', status: :not_found)
+    end
+  end
 
   def create
     # マンションIDをparamsから取得
