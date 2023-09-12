@@ -1,6 +1,4 @@
 class V1::Owner::MansionsController < V1::Owner::BasesController
-  before_action :authenticate_owner, only: [:create] 
-    
       def create
         form = RentalHouseMansionRegistrationForm.new(rental_house_params.merge(owner_id: @current_owner.id))
         if form.save
