@@ -14,5 +14,5 @@ db create:
 	docker-compose run api bundle exec rails db:create
 seed:
 	docker-compose run --rm api rails db:seed
-lint:
-    docker-compose run --rm api rubocop --auto-correct
+# lint:
+#     docker-compose run --rm api rubocop --auto-correct
