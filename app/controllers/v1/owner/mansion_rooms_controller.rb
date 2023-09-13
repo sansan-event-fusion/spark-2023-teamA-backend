@@ -1,15 +1,12 @@
 class V1::Owner::MansionRoomsController < V1::Owner::BasesController
-  def show
-    # マンションルームIDをparamsから取得
-    mansion_room_id = params[:id]
+  def index
+    # マンションを取得
+    mansion = Mansion.find_by(id: params[:mansion_id])
 
-    # マンションルームを取得
-    mansion_room = MansionRoom.find_by(id: mansion_room_id)
-
-    if mansion_room
-      render json: mansion_room, serializer: MansionRoomSerializer, status: :ok
+    if mansion
+      render json: mansion, serializer: MansionSerializer, status: :ok
     else
-      render_error(message: 'マンションルームが見つかりません', status: :not_found)
+      render_error(message: 'マンションが見つかりません', status: :not_found)
     end
   end
 
