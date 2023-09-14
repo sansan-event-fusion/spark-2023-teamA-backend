@@ -32,8 +32,3 @@ local:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
-
-google:
-  service: GCS
-  project: <%= ENV["GOOGLE_PROJECT_ID"] %>
-  bucket: <%= ENV["STORAGE_BUCKET_NAME"] %>
