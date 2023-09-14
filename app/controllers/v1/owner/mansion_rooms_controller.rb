@@ -38,7 +38,7 @@ class V1::Owner::MansionRoomsController < V1::Owner::BasesController
       :rent,
       :maintenance_fee,
       :contract_duration,
-      mansion_room_photos: [:image]
+      mansion_room_photos: []
     )
   end
 end

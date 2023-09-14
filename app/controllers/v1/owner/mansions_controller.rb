@@ -18,7 +18,7 @@ class V1::Owner::MansionsController < V1::Owner::BasesController
       :structure_type_id,
       :max_floor_number,
       :building_age,
-      rental_house_photos: [:image]
+      rental_house_photos: []
     )
   end
 end
