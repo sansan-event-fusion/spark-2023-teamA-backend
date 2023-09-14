@@ -12,6 +12,7 @@ class MansionRoomRegistrationForm
   attribute :rent, :integer
 
   attribute :maintenance_fee, :integer
+  attribute :reserve_url, :string
   attribute :contract_duration, :string
   attribute :mansion_room_photos, array: true
 
@@ -24,6 +25,7 @@ class MansionRoomRegistrationForm
   validates :stay_fee, presence: true
   validates :rent, presence: true
   validates :maintenance_fee, presence: true
+  validates :reserve_url, presence: true
   validates :contract_duration, presence: true
 
   attr_reader :saved_mansion_room
@@ -42,6 +44,7 @@ class MansionRoomRegistrationForm
         stay_fee:,
         rent:,
         maintenance_fee:,
+        reserve_url:,
         contract_duration:
       )
 

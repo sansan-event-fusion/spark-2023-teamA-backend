@@ -3,5 +3,5 @@ class MansionSerializer < ActiveModel::Serializer
   has_many :mansion_rooms
 
   attributes :id
-  attributes :rental_house_id
+  attributes :rental_hous
 end
