@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :v1 do
     resources :rental_houses, only: :index do
-      resources :mansions, only: :index do
+      resource :mansions, only: :index do
         resources :mansion_rooms, only: :show
       end
     end
