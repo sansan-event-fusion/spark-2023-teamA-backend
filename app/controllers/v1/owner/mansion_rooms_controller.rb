@@ -1,10 +1,10 @@
 class V1::Owner::MansionRoomsController < V1::Owner::BasesController
   def index
-    # マンションを取得
-    mansion = Mansion.find_by(id: params[:mansion_id])
+    # レンタルハウスを取得
+    rental_house = RentalHouse.find_by(id: params[:rental_house_id])
 
-    if mansion
-      render json: mansion, include: ['mansion_rooms.mansion_room_photos'], serializer: MansionSerializer, status: :ok
+    if rental_house
+      render json: rental_house, include: ['rental_house_photos','mansion','mansion.mansion_rooms','mansion.mansion_rooms.mansion_room_photos'], serializer: RentalHouseSerializer, status: :ok
     else
       render_error(message: 'マンションが見つかりません', status: :not_found)
     end
