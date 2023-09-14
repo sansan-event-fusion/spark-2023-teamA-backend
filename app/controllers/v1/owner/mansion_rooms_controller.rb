@@ -4,7 +4,7 @@ class V1::Owner::MansionRoomsController < V1::Owner::BasesController
     mansion = Mansion.find_by(id: params[:mansion_id])
 
     if mansion
-      render json: mansion, serializer: MansionSerializer, status: :ok
+      render json: mansion, include: ['mansion_rooms.mansion_room_photos'], serializer: MansionSerializer, status: :ok
     else
       render_error(message: 'マンションが見つかりません', status: :not_found)
     end
