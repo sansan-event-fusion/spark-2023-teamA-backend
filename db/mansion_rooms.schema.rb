@@ -9,6 +9,7 @@ create_table 'mansion_rooms' do |t|
   t.integer 'rent', null: false
   t.integer 'maintenance_fee', null: false
   t.string 'contract_duration', null: false
+  t.string 'reserve_url', null: true
 
   t.datetime 'created_at'
   t.datetime 'updated_at'

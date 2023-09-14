@@ -12,5 +12,6 @@ class MansionRoomSerializer < ActiveModel::Serializer
   attributes :stay_fee
   attributes :rent
   attributes :maintenance_fee
+  attributes :reserve_url
   attributes :contract_duration
 end

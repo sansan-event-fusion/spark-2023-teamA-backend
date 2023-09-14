@@ -19,6 +19,15 @@ module Myapp
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    
+      config.middleware.insert_before 0, Rack::Cors do
+        allow do
+          origins 'localhost:3001', 'https://www.fillhome.net/',  'https://spark-2023-team-a.vercel.app/'
+          resource '*', headers: :any, methods: [:get, :post, :put, :delete, :options], credentials: true
+        end
+      end
+
+
     config.api_only = true
 
     config.middleware.use ActionDispatch::Cookies
